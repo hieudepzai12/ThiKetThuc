@@ -31,7 +31,8 @@ public class QLKhachHang extends KhachHang{
 
    
     public void DocKhachHang(String filename) {
-        ArrayList<String> data = FileHelper.readFileText(filename);
+       ArrayList<String> data = FileHelper.readFileText(filename); //doc file
+        //đổ dữ liệu vào danh sách
         dsKhachHang.clear();
         for (String item : data) {
             String[] arr = item.split(";");
@@ -47,7 +48,8 @@ public class QLKhachHang extends KhachHang{
     public boolean GhiHoaDon(String filename) {
          ArrayList<String> data = new ArrayList<>();
         for (KhachHang kh : dsKhachHang) {
-            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau()+ ";" + kh.getChisocu()+ ";"+kh.getChisomoi();
+            String info = kh.getMaso() + ";" + kh.getHoten() + ";" + kh.getSonhankhau() + ";"
+                    + kh.getChisocu() + ";" + kh.getChisomoi() + ";" + kh.getTieuThu();
             data.add(info);
         }
         return FileHelper.writeFileText(filename, data);
@@ -70,15 +72,19 @@ public class QLKhachHang extends KhachHang{
     
     public double getTieuThuThapNhat()
     {
-       double min=0;
+       double min = 0;  
        sapXepTheoMucTieuThu();
-       
-       return min;       
+        min = dsKhachHang.get(0).getTieuThu();
+        return min;
     }
     
     public double getTieuThuTrungBinh()
     {
-       double tb=0;
-       return 0;     
+        double tb, tongTT = 0;
+        for (int i = 0; i < dsKhachHang.size(); i++) {
+            tongTT += dsKhachHang.get(i).getTieuThu();
+        }
+        tb = tongTT / dsKhachHang.size();
+        return tb;     
     }
 }
