@@ -77,6 +77,13 @@ public class KhachHang {
     public double getDinhMuc() {  
         return sonhankhau*4;
     }
+     public boolean vuotDinhMuc() {
+        if (getTieuThu() <= getDinhMuc()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public double tinhTienTra() {
         double tienTra=0;
@@ -89,7 +96,7 @@ public class KhachHang {
                 giaBan=6700*getDinhMuc()+12900*(getTieuThu()-getDinhMuc());
             }
             else{
-                giaBan=6700*getDinhMuc()+12900*(getTieuThu()-getDinhMuc()- sonhankhau*2)+ 14400*(getTieuThu()-getDinhMuc()-sonhankhau*2);
+                giaBan=6700*getDinhMuc()+12900* sonhankhau*2+ 14400*(getTieuThu()-getDinhMuc()-sonhankhau*2);
             }
         }
         return tienTra=giaBan+giaBan*0.05+giaBan*0.25+(giaBan*0.25)*0.08;
